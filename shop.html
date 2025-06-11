@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - SafetyGear</title>
+    <link rel="icon" href="images/fav.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0066cc',
+                        secondary: '#ff9900'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #0066cc;
+            cursor: pointer;
+        }
+        .custom-range::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #0066cc;
+            cursor: pointer;
+            border: none;
+        }
+        .custom-checkbox {
+            position: relative;
+            padding-left: 28px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 18px;
+            width: 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+        }
+        .custom-checkbox:hover input ~ .checkmark {
+            background-color: #f3f4f6;
+        }
+        .custom-checkbox input:checked ~ .checkmark {
+            background-color: #0066cc;
+            border-color: #0066cc;
+        }
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+        .custom-checkbox .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .custom-radio {
+            position: relative;
+            padding-left: 28px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .custom-radio input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        .radio-mark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 18px;
+            width: 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 50%;
+        }
+        .custom-radio:hover input ~ .radio-mark {
+            background-color: #f3f4f6;
+        }
+        .custom-radio input:checked ~ .radio-mark {
+            background-color: white;
+            border-color: #0066cc;
+        }
+        .radio-mark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .custom-radio input:checked ~ .radio-mark:after {
+            display: block;
+        }
+        .custom-radio .radio-mark:after {
+            top: 4px;
+            left: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #0066cc;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e5e7eb;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #0066cc;
+        }
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        .star-rating {
+            display: inline-flex;
+            font-size: 1rem;
+            color: #f59e0b;
+        }
+        .product-card:hover .quick-view {
+            opacity: 1;
+        }
+        .custom-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20fill='none'%20viewBox='0%200%2024%2024'%20stroke='%23374151'%3E%3Cpath%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='2'%20d='M19%209l-7%207-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+        .filter-panel {
+            transition: transform 0.3s ease-in-out;
+        }
+        @media (max-width: 768px) {
+            .filter-panel {
+                transform: translateX(-100%);
+            }
+            .filter-panel.active {
+                transform: translateX(0);
+            }
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Top Bar -->
+    <div class="bg-gray-50 py-2 border-b border-gray-100">
+        <div class="container mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 mb-2 md:mb-0">
+                <div class="flex items-center text-sm text-gray-600">
+                    <i class="ri-phone-line mr-2"></i>
+                    <span>+254 715 135 141</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600">
+                    <i class="ri-mail-line mr-2"></i>
+                    <span>info@safetygear.co.ke</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition" aria-label="Facebook">
+                    <i class="ri-facebook-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition" aria-label="Twitter">
+                    <i class="ri-twitter-x-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition" aria-label="LinkedIn">
+                    <i class="ri-linkedin-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition" aria-label="Instagram">
+                    <i class="ri-instagram-line"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" aria-label="Safety Gear Home">
+                    <img src="images/logo.png" alt="Safety Gear Logo" class="h-12 w-auto">
+                </a>
+                <nav class="hidden md:flex ml-6 space-x-6" aria-label="Main navigation">
+                    <a href="index.html" class="text-gray-600 hover:text-primary font-medium">Home</a>
+                    <a href="#" class="text-primary font-medium border-b-2 border-primary pb-1">Shop</a>
+                    <a href="#" class="text-gray-600 hover:text-primary font-medium">Categories</a>
+                    <a href="#" class="text-gray-600 hover:text-primary font-medium">Bulk Orders</a>
+                    <a href="#" class="text-gray-600 hover:text-primary font-medium">About</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center relative">
+                    <input type="search" placeholder="Search products..." class="border border-gray-300 rounded-button pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary w-64" aria-label="Search products">
+                    <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                        <i class="ri-search-line"></i>
+                    </div>
+                </div>
+                <button id="mobile-filter-toggle" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-full" aria-label="Filter">
+                    <i class="ri-filter-3-line ri-lg"></i>
+                </button>
+                <button id="mobile-search-toggle" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-full" aria-label="Search">
+                    <i class="ri-search-line ri-lg"></i>
+                </button>
+                <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-full" aria-label="User Account">
+                    <i class="ri-user-line ri-lg"></i>
+                </a>
+                <button id="cart-toggle" class="w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-full relative" aria-label="Shopping Cart">
+                    <i class="ri-shopping-cart-line ri-lg"></i>
+                    <span class="absolute -top-1 -right-1 bg-primary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                </button>
+                <button id="mobile-menu-toggle" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-full" aria-label="Menu">
+                    <i class="ri-menu-line ri-lg"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-search" class="mt-4 hidden md:hidden px-4">
+            <div class="relative">
+                <input type="search" placeholder="Search products..." class="border border-gray-300 rounded-button pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary w-full" aria-label="Search products">
+                <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                    <i class="ri-search-line"></i>
+                </div>
+            </div>
+        </div>
+        <nav id="mobile-menu" class="mt-4 hidden md:hidden flex flex-col space-y-2 pb-2 px-4">
+            <a href="index.html" class="text-gray-600 hover:text-primary font-medium py-2">Home</a>
+            <a href="#" class="text-primary font-medium py-2 border-l-4 border-primary pl-2">Shop</a>
+            <a href="#" class="text-gray-600 hover:text-primary font-medium py-2">Categories</a>
+            <a href="#" class="text-gray-600 hover:text-primary font-medium py-2">Bulk Orders</a>
+            <a href="#" class="text-gray-600 hover:text-primary font-medium py-2">About</a>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center text-sm text-gray-500">
+                <a href="index.html" class="hover:text-primary">Home</a>
+                <span class="mx-2">/</span>
+                <span class="font-medium text-gray-900">Shop</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Filter Sidebar -->
+            <aside id="filter-panel" class="filter-panel md:block hidden w-full md:w-1/4 bg-white rounded-lg shadow-sm p-6 h-fit sticky top-24">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold text-gray-900">Filters</h2>
+                    <button id="close-filter" class="md:hidden w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700" aria-label="Close Filters">
+                        <i class="ri-close-line ri-lg"></i>
+                    </button>
+                </div>
+                <!-- Categories -->
+                <div class="mb-6">
+                    <h3 class="font-medium text-gray-900 mb-3">Categories</h3>
+                    <div class="space-y-2">
+                        <label class="custom-checkbox block text-gray-700">
+                            Head Protection
+                            <input type="checkbox" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Hand Protection
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Eye Protection
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Respiratory Protection
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Hearing Protection
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            Fall Protection
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Price Range -->
+                <div class="mb-6">
+                    <h3 class="font-medium text-gray-900 mb-3">Price Range</h3>
+                    <div>
+                        <input type="range" id="price-range" class="custom-range w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer" min="0" max="500" value="200">
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="w-1/2 pr-2">
+                                <label for="min-price" class="block text-xs text-gray-500 mb-1">Min</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" id="min-price" value="0" class="w-full border border-gray-300 rounded-button py-2 pl-8 pr-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                </div>
+                            </div>
+                            <div class="w-1/2 pl-2">
+                                <label for="max-price" class="block text-xs text-gray-500 mb-1">Max</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                    <input type="number" id="max-price" value="200" class="w-full border border-gray-300 rounded-button py-2 pl-8 pr-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Certification -->
+                <div class="mb-6">
+                    <h3 class="font-medium text-gray-900 mb-3">Certification</h3>
+                    <div class="space-y-2">
+                        <label class="custom-checkbox block text-gray-700">
+                            ANSI
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            NIOSH
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            CE
+                            <input type="checkbox" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            OSHA
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            ISO
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Brand -->
+                <div class="mb-6">
+                    <h3 class="font-medium text-gray-900 mb-3">Brand</h3>
+                    <div class="space-y-2">
+                        <label class="custom-checkbox block text-gray-700">
+                            SafetyFirst
+                            <input type="checkbox" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            ProGuard
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            WorkSafe
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            IndustrySafe
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="custom-checkbox block text-gray-700">
+                            SecureWork
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Rating -->
+                <div class="mb-6">
+                    <h3 class="font-medium text-gray-900 mb-3">Rating</h3>
+                    <div class="space-y-2">
+                        <label class="custom-radio block text-gray-700">
+                            <div class="flex items-center">
+                                <div class="star-rating">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="ml-2">& Up</span>
+                            </div>
+                            <input type="radio" name="rating" checked>
+                            <span class="radio-mark"></span>
+                        </label>
+                        <label class="custom-radio block text-gray-700">
+                            <div class="flex items-center">
+                                <div class="star-rating">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-line"></i>
+                                </div>
+                                <span class="ml-2">& Up</span>
+                            </div>
+                            <input type="radio" name="rating">
+                            <span class="radio-mark"></span>
+                        </label>
+                        <label class="custom-radio block text-gray-700">
+                            <div class="flex items-center">
+                                <div class="star-rating">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-line"></i>
+                                    <i class="ri-star-line"></i>
+                                </div>
+                                <span class="ml-2">& Up</span>
+                            </div>
+                            <input type="radio" name="rating">
+                            <span class="radio-mark"></span>
+                        </label>
+                        <label class="custom-radio block text-gray-700">
+                            <div class="flex items-center">
+                                <div class="star-rating">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-line"></i>
+                                    <i class="ri-star-line"></i>
+                                    <i class="ri-star-line"></i>
+                                </div>
+                                <span class="ml-2">& Up</span>
+                            </div>
+                            <input type="radio" name="rating">
+                            <span class="radio-mark"></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- In Stock -->
+                <div class="mb-6">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-medium text-gray-900">In Stock Only</h3>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Clear Filters -->
+                <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-button whitespace-nowrap" aria-label="Clear All Filters">
+                    Clear All Filters
+                </button>
+            </aside>
+
+            <!-- Product Content -->
+            <div class="w-full md:w-3/4">
+                <!-- Product Controls -->
+                <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div class="text-sm text-gray-600">
+                            Showing <span class="font-medium">1-12</span> of <span class="font-medium">48</span> products
+                        </div>
+                        <div class="flex flex-wrap items-center gap-4">
+                            <div class="relative">
+                                <select class="custom-select bg-gray-50 border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm" aria-label="Sort Products">
+                                    <option>Sort by: Popularity</option>
+                                    <option>Price: Low to High</option>
+                                    <option>Price: High to Low</option>
+                                    <option>Newest First</option>
+                                </select>
+                            </div>
+                            <div class="flex items-center border border-gray-300 rounded-button overflow-hidden">
+                                <button class="bg-primary text-white px-3 py-2 text-sm" aria-label="Grid View">
+                                    <i class="ri-layout-grid-line"></i>
+                                </button>
+                                <button class="bg-white text-gray-700 hover:bg-gray-50 px-3 py-2 text-sm" aria-label="List View">
+                                    <i class="ri-list-check"></i>
+                                </button>
+                            </div>
+                            <div class="relative">
+                                <select class="custom-select bg-gray-50 border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-button focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm" aria-label="Items Per Page">
+                                    <option>12 per page</option>
+                                    <option>24 per page</option>
+                                    <option>36 per page</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Product 1 -->
+                    <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%20safety%20helmet%20hard%20hat%20with%20white%20color%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=1&orientation=landscape" alt="Safety Helmet Pro" class="w-full h-48 object-cover object-top" loading="lazy">
+                            <div class="quick-view opacity-0 transition-opacity absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                                <button class="bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100" aria-label="View Safety Helmet Pro">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                            </div>
+                            <div class="absolute top-2 left-2 bg-primary text-white text-xs font-medium px-2 py-1 rounded">
+                                New
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-xs text-gray-500 mb-1">Head Protection</div>
+                            <h3 class="font-medium text-gray-900 mb-1">Safety Helmet Pro X500</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="star-rating text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-half-line"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 ml-1">(128)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <span class="text-lg font-semibold text-gray-900">$59.99</span>
+                                    <span class="text-sm text-gray-500 line-through ml-2">$79.99</span>
+                                </div>
+                                <button class="bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2 px-3 rounded-button whitespace-nowrap" aria-label="Add Safety Helmet Pro to Cart">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%20safety%20gloves%20with%20reinforced%20palms%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=2&orientation=landscape" alt="Work Gloves" class="w-full h-48 object-cover object-top" loading="lazy">
+                            <div class="quick-view opacity-0 transition-opacity absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                                <button class="bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100" aria-label="View Work Gloves">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                            </div>
+                            <div class="absolute top-2 left-2 bg-secondary text-white text-xs font-medium px-2 py-1 rounded">
+                                Best Seller
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-xs text-gray-500 mb-1">Hand Protection</div>
+                            <h3 class="font-medium text-gray-900 mb-1">Heavy Duty Work Gloves</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="star-rating text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 ml-1">(246)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-lg font-semibold text-gray-900">$24.95</span>
+                                </div>
+                                <button class="bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2 px-3 rounded-button whitespace-nowrap" aria-label="Add Work Gloves to Cart">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%20safety%20goggles%20with%20anti-fog%20lens%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=3&orientation=landscape" alt="Safety Goggles" class="w-full h-48 object-cover object-top" loading="lazy">
+                            <div class="quick-view opacity-0 transition-opacity absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                                <button class="bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100" aria-label="View Safety Goggles">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-xs text-gray-500 mb-1">Eye Protection</div>
+                            <h3 class="font-medium text-gray-900 mb-1">Anti-Fog Safety Goggles</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="star-rating text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-line"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 ml-1">(87)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-lg font-semibold text-gray-900">$32.50</span>
+                                </div>
+                                <button class="bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2 px-3 rounded-button whitespace-nowrap" aria-label="Add Safety Goggles to Cart">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%20n95%20respirator%20mask%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=4&orientation=landscape" alt="N95 Respirator" class="w-full h-48 object-cover object-top" loading="lazy">
+                            <div class="quick-view opacity-0 transition-opacity absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                                <button class="bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100" aria-label="View N95 Respirator">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                            </div>
+                            <div class="absolute top-2 left-2 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                NIOSH Certified
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-xs text-gray-500 mb-1">Respiratory Protection</div>
+                            <h3 class="font-medium text-gray-900 mb-1">N95 Respirator (Pack of 10)</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="star-rating text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-half-line"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 ml-1">(192)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-lg font-semibold text-gray-900">$29.99</span>
+                                </div>
+                                <button class="bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2 px-3 rounded-button whitespace-nowrap" aria-label="Add N95 Respirator to Cart">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 5 -->
+                    <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%20ear%20protection%20headphones%20for%20construction%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=5&orientation=landscape" alt="Ear Protection" class="w-full h-48 object-cover object-top" loading="lazy">
+                            <div class="quick-view opacity-0 transition-opacity absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                                <button class="bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100" aria-label="View Ear Protection">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-xs text-gray-500 mb-1">Hearing Protection</div>
+                            <h3 class="font-medium text-gray-900 mb-1">Professional Ear Defenders</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="star-rating text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-line"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 ml-1">(76)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-lg font-semibold text-gray-900">$45.00</span>
+                                    <span class="text-sm text-gray-500 line-through ml-2">$55.00</span>
+                                </div>
+                                <button class="bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2 px-3 rounded-button whitespace-nowrap" aria-label="Add Ear Defenders to Cart">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 6 -->
+                    <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%20full%20body%20safety%20harness%20for%20fall%20protection%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=6&orientation=landscape" alt="Safety Harness" class="w-full h-48 object-cover object-top" loading="lazy">
+                            <div class="quick-view opacity-0 transition-opacity absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                                <button class="bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100" aria-label="View Safety Harness">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                            </div>
+                            <div class="absolute top-2 left-2 bg-blue-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                ANSI Certified
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-xs text-gray-500 mb-1">Fall Protection</div>
+                            <h3 class="font-medium text-gray-900 mb-1">Full Body Safety Harness</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="star-rating text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 ml-1">(124)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-lg font-semibold text-gray-900">$129.99</span>
+                                </div>
+                                <button class="bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2 px-3 rounded-button whitespace-nowrap" aria-label="Add Safety Harness to Cart">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 7 -->
+                    <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%20steel%20toe%20work%20boots%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=7&orientation=landscape" alt="Safety Boots" class="w-full h-48 object-cover object-top" loading="lazy">
+                            <div class="quick-view opacity-0 transition-opacity absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                                <button class="bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100" aria-label="View Safety Boots">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-xs text-gray-500 mb-1">Foot Protection</div>
+                            <h3 class="font-medium text-gray-900 mb-1">Steel Toe Work Boots</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="star-rating text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-half-line"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 ml-1">(158)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-lg font-semibold text-gray-900">$89.95</span>
+                                    <span class="text-sm text-gray-500 line-through ml-2">$110.00</span>
+                                </div>
+                                <button class="bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2 px-3 rounded-button whitespace-nowrap" aria-label="Add Safety Boots to Cart">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 8 -->
+                    <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%20high%20visibility%20reflective%20safety%20vest%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=8&orientation=landscape" alt="Safety Vest" class="w-full h-48 object-cover object-top" loading="lazy">
+                            <div class="quick-view opacity-0 transition-opacity absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                                <button class="bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100" aria-label="View Safety Vest">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                            </div>
+                            <div class="absolute top-2 left-2 bg-secondary text-white text-xs font-medium px-2 py-1 rounded">
+                                Best Seller
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-xs text-gray-500 mb-1">Visibility</div>
+                            <h3 class="font-medium text-gray-900 mb-1">Hi-Vis Safety Vest</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="star-rating text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-line"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 ml-1">(93)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-lg font-semibold text-gray-900">$19.99</span>
+                                </div>
+                                <button class="bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2 px-3 rounded-button whitespace-nowrap" aria-label="Add Safety Vest to Cart">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 9 -->
+                    <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%20face%20shield%20with%20clear%20visor%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=9&orientation=landscape" alt="Face Shield" class="w-full h-48 object-cover object-top" loading="lazy">
+                            <div class="quick-view opacity-0 transition-opacity absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                                <button class="bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100" aria-label="View Face Shield">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-xs text-gray-500 mb-1">Face Protection</div>
+                            <h3 class="font-medium text-gray-900 mb-1">Clear Face Shield</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="star-rating text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-half-line"></i>
+                                    <i class="ri-star-line"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 ml-1">(64)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-lg font-semibold text-gray-900">$27.50</span>
+                                </div>
+                                <button class="bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2 px-3 rounded-button whitespace-nowrap" aria-label="Add Face Shield to Cart">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 10 -->
+                    <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%20chemical%20resistant%20gloves%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=10&orientation=landscape" alt="Chemical Gloves" class="w-full h-48 object-cover object-top" loading="lazy">
+                            <div class="quick-view opacity-0 transition-opacity absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                                <button class="bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100" aria-label="View Chemical Gloves">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                            </div>
+                            <div class="absolute top-2 left-2 bg-purple-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                Chemical Resistant
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-xs text-gray-500 mb-1">Hand Protection</div>
+                            <h3 class="font-medium text-gray-900 mb-1">Chemical Resistant Gloves</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="star-rating text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-line"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 ml-1">(82)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-lg font-semibold text-gray-900"> $34.99 </span>
+                                </div>
+                                <button class="bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2 px-3 rounded-button whitespace-nowrap" aria-label="Add Chemical Gloves to Cart">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 11 -->
+                    <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%20welding%20helmet%20with%20auto%20darkening%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=11&orientation=landscape" alt="Welding Helmet" class="w-full h-48 object-cover object-top" loading="lazy">
+                            <div class="quick-view opacity-0 transition-opacity absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                                <button class="bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100" aria-label="View Welding Helmet">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                            </div>
+                            <div class="absolute top-2 left-2 bg-red-500 text-white text-xs font-medium px-2 py-1 rounded">
+                                Sale
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-xs text-gray-500 mb-1">Welding Protection</div>
+                            <h3 class="font-medium text-gray-900 mb-1">Auto-Darkening Welding Helmet</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="star-rating text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-half-line"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 ml-1">(117)</span>
+                            </div>
+                            <div class="flex items-center items-center">
+                                <div>
+                                    <span class="text-lg font-semibold text-gray-900">$149.99</span>
+                                    <span class="text-sm text-gray-500 line-through ml-2">$189.99</span>
+                                </div>
+                                <button class="bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2 px-3 rounded-button whitespace-nowrap" aria-label="Add Welding Helmet to Cart">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 12 -->
+                    <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=professional%20first%20aid%20kit%20in%20red%20case%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=12&orientation=landscape" alt="First Aid Kit" class="w-full h-48 object-cover object-top" loading="lazy">
+                            <div class="quick-view opacity-0 transition-opacity absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                                <button class="bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center shadow-md hover:bg-gray-100" aria-label="View First Aid Kit">
+                                    <i class="ri-eye-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="text-xs text-gray-500 mb-1">Emergency</div>
+                            <h3 class="font-medium text-gray-900 mb-1">Workplace First Aid Kit</h3>
+                            <div class="flex items-center mb-2">
+                                <div class="star-rating text-sm">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                                <span class="text-xs text-gray-500 ml-1">(203)</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-lg font-semibold text-gray-900">$49.95</span>
+                                </div>
+                                <button class="bg-primary hover:bg-primary/90 text-white text-sm font-medium py-2 px-3 rounded-button whitespace-nowrap" aria-label="Add First Aid Kit to Cart">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-8 flex justify-center">
+                    <nav class="flex items-center" aria-label="Pagination">
+                        <button class="w-10 h-10 flex items-center justify-center rounded-l-lg border border-gray-300 bg-white text-gray-500 hover:bg-gray-50" aria-label="Previous Page">
+                            <i class="ri-arrow-left-s-line"></i>
+                        </button>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center border-t border-b border-gray-300 bg-primary text-white">1</a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">2</a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">3</a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">4</a>
+                        <button class="w-10 h-10 flex items-center justify-center rounded-r-lg border border-gray-300 bg-white text-gray-500 hover:bg-gray-50" aria-label="Next Page">
+                            <i class="ri-arrow-right-s-line"></i>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-20 right-4 bg-gray-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300" aria-label="Back to Top">
+        <i class="ri-arrow-up-line ri-lg"></i>
+    </button>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/254715135141" class="whatsapp-float" target="_blank" aria-label="Contact via WhatsApp">
+        <div class="w-16 h-16 flex items-center justify-center bg-green-500 text-white rounded-full shadow-lg">
+            <i class="ri-whatsapp-line text-3xl"></i>
+        </div>
+    </a>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-96 bg-white shadow-2xl transform translate-x-full transition-all duration-300 z-50">
+        <div class="flex flex-col h-full">
+            <!-- Header -->
+            <header class="p-4 border-b">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-semibold text-gray-900">Shopping Cart (3)</h2>
+                    <button id="close-cart" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700" aria-label="Close Cart">
+                        <i class="ri-close-line ri-lg"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Cart Items -->
+            <div class="flex-1 overflow-y-auto p-4 space-y-4">
+                <!-- Item 1 -->
+                <div class="flex items-start space-x-4">
+                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20helmet%20hard%20hat%20with%20white%20color%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=80&height=80&seq=1&orientation=squarish" alt="Safety Helmet Pro" class="w-20 h-20 object-cover rounded-lg" loading="lazy">
+                    <div class="flex-1">
+                        <h3 class="text-sm font-medium text-gray-900">Safety Helmet Pro X500</h3>
+                        <p class="text-sm text-gray-500">White</p>
+                        <div class="flex items-center mt-2">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full" aria-label="Decrease Quantity">-</button>
+                            <input type="number" value="1" min="1" class="w-10 h-6 text-center text-sm mx-2 border-none" aria-label="Quantity">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full" aria-label="Increase Quantity">+</button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-medium text-gray-900">$59.99</p>
+                        <button class="text-sm text-red-500 hover:text-red-600 mt-1" aria-label="Remove Safety Helmet">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="flex items-start space-x-4">
+                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20gloves%20with%20reinforced%20palms%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=80&height=80&seq=2&orientation=squarish" alt="Work Gloves" class="w-20 h-20 object-cover rounded-lg" loading="lazy">
+                    <div class="flex-1">
+                        <h3 class="text-sm font-medium text-gray-900">Heavy Duty Work Gloves</h3>
+                        <p class="text-sm text-gray-500">Large</p>
+                        <div class="flex items-center mt-2">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full" aria-label="Decrease Quantity">-</button>
+                            <input type="number" value="1" min="1" class="w-10 h-6 text-center text-sm mx-2 border-none" aria-label="Quantity">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full" aria-label="Increase Quantity">+</button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-medium text-gray-900">$24.95</p>
+                        <button class="text-sm text-red-500 hover:text-red-600 mt-1" aria-label="Remove Work Gloves">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="flex items-start space-x-4">
+                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20goggles%20with%20anti-fog%20lens%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=80&height=80&seq=3&orientation=squarish" alt="Safety Goggles" class="w-20 h-20 object-cover rounded-lg" loading="lazy">
+                    <div class="flex-1">
+                        <h3 class="text-sm font-medium text-gray-900">Anti-Fog Safety Goggles</h3>
+                        <p class="text-sm text-gray-500">Universal</p>
+                        <div class="flex items-center mt-2">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full" aria-label="Decrease Quantity">-</button>
+                            <input type="number" value="1" min="1" class="w-10 h-6 text-center text-sm mx-2 border-none" aria-label="Quantity">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full" aria-label="Increase Quantity">+</button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-medium text-gray-900">$32.50</p>
+                        <button class="text-sm text-red-500 hover:text-red-600 mt-1" aria-label="Remove Safety Goggles">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="border-t p-4 space-y-4">
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">Subtotal</span>
+                    <span class="font-medium text-gray-900">$117.44</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">Shipping</span>
+                    <span class="font-medium text-gray-900">Calculated at checkout</span>
+                </div>
+                <div class="flex justify-between text-base font-medium">
+                    <span class="text-gray-900">Total</span>
+                    <span class="text-gray-900">$117.44</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button id="continue-shopping" class="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-button whitespace-nowrap" aria-label="Continue Shopping">
+                        Continue Shopping
+                    </button>
+                    <button class="w-full px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-button whitespace-nowrap" aria-label="Proceed to Checkout">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"></div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-16 pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <a href="index.html" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">SafetyGear</a>
+                    <p class="text-gray-400 mb-4">Your trusted source for high-quality personal protective equipment and safety solutions since 2010.</p>
+                    <div întâlnfont="Pacifico" class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Facebook">
+                            <i class="ri-facebook-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Twitter">
+                            <i class="ri-twitter-x-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Instagram">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-lg full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors" aria-label="LinkedIn">
+                            <i class="ri-linkedin-line"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Shop</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Categories</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Bulk Orders</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">My Account</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Order Tracking</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Shipping Information</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Returns & Exchanges</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="ri-map-pin-line text-gray-400 mr-3 mt-0.5"></i>
+                            <span class="text-gray-400">123 Safety Road, Industrial District, Nairobi, Kenya</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-phone-line text-gray-400 mr-3"></i>
+                            <span class="text-gray-400">+254 715 135 141</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-mail-line text-gray-400 mr-3"></i>
+                            <span class="text-gray-400">info@safetygear.co.ke</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-time-line text-gray-400 mr-3"></i>
+                            <span class="text-gray-400">Mon-Fri: 8AM-6PM, Sat: 9AM-4PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 SafetyGear. All rights reserved.</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Shipping Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Refund Policy</a>
+                    </div>
+                </div>
+                <div class="flex justify-center mt-6 space-x-4">
+                    <i class="ri-visa-line ri-lg text-gray-400"></i>
+                    <i class="ri-mastercard-line ri-lg text-gray-400"></i>
+                    <i class="ri-paypal-line ri-lg text-gray-400"></i>
+                    <i class="ri-apple-line ri-lg text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // Utility function to toggle element visibility
+    const toggleElement = (element, show) => {
+        element.classList.toggle('hidden', !show);
+    };
+
+    // Utility function to add/remove multiple classes
+    const setClasses = (element, classes, add = true) => {
+        element.classList[add ? 'add' : 'remove'](...classes.split(' '));
+    };
+
+    // Mobile Menu
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuToggle?.addEventListener('click', () => toggleElement(mobileMenu, !mobileMenu.classList.contains('hidden')));
+
+    // Mobile Search
+    const mobileSearchToggle = document.getElementById('mobile-search-toggle');
+    const mobileSearch = document.getElementById('mobile-search');
+    mobileSearchToggle?.addEventListener('click', () => toggleElement(mobileSearch, !mobileSearch.classList.contains('hidden')));
+
+    // Mobile Filter
+    const mobileFilterToggle = document.getElementById('mobile-filter-toggle');
+    const closeFilter = document.getElementById('close-filter');
+    const filterPanel = document.getElementById('filter-panel');
+
+    const openFilter = () => {
+        if (!filterPanel) return;
+        toggleElement(filterPanel, true);
+        setClasses(filterPanel, 'active fixed inset-0 z-50 p-4');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeFilter = () => {
+        if (!filterPanel) return;
+        setClasses(filterPanel, 'active', false);
+        setClasses(filterPanel, 'fixed inset-0 z-50 p-4', false);
+        filterPanel.classList.add('-translate-x-full');
+        setTimeout(() => {
+            toggleElement(filterPanel, false);
+            document.body.style.overflow = '';
+        }, 10);
+    };
+
+    mobileFilterToggle?.addEventListener('click', openFilter);
+    closeFilter?.addEventListener('click', closeFilter);
+
+    // Price Range
+    const priceRange = document.getElementById('price-range');
+    const minPrice = document.getElementById('min-price');
+    const maxPrice = document.getElementById('max-price');
+
+    const updatePriceRange = () => {
+        if (!priceRange || !maxPrice) return;
+        maxPrice.value = priceRange.value;
+    };
+
+    const validateMinPrice = () => {
+        if (!minPrice || !maxPrice) return;
+        const min = parseInt(minPrice.value);
+        const max = parseInt(maxPrice.value);
+        if (min > max) minPrice.value = max;
+    };
+
+    const validateMaxPrice = () => {
+        if (!minPrice || !maxPrice || !priceRange) return;
+        const min = parseInt(minPrice.value);
+        const max = parseInt(maxPrice.value);
+        if (max < min) maxPrice.value = min;
+        priceRange.value = maxPrice.value;
+    };
+
+    priceRange?.addEventListener('input', updatePriceRange);
+    minPrice?.addEventListener('input', validateMinPrice);
+    maxPrice?.addEventListener('input', validateMaxPrice);
+
+    // Cart Sidebar
+    const cartToggle = document.getElementById('cart-toggle');
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const closeCart = document.getElementById('close-cart');
+    const cartOverlay = document.getElementById('cart-overlay');
+    const continueShopping = document.getElementById('continue-shopping');
+
+    const openCart = () => {
+        if (!cartSidebar || !cartOverlay) return;
+        setClasses(cartSidebar, 'translate-x-full', false);
+        toggleElement(cartOverlay, true);
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeCart = () => {
+        if (!cartSidebar || !cartOverlay) return;
+        setClasses(cartSidebar, 'translate-x-full');
+        toggleElement(cartOverlay, false);
+        document.body.style.overflow = '';
+    };
+
+    cartToggle?.addEventListener('click', openCart);
+    closeCart?.addEventListener('click', closeCart);
+    continueShopping?.addEventListener('click', closeCart);
+    cartOverlay?.addEventListener('click', closeCart);
+
+    // Cart Quantity Controls
+    const quantityContainers = document.querySelectorAll('#cart-sidebar .flex.items-center');
+    quantityContainers.forEach(container => {
+        const decreaseBtn = container.querySelector('button:first-child');
+        const increaseBtn = container.querySelector('button:last-child');
+        const input = container.querySelector('input');
+
+        decreaseBtn?.addEventListener('click', () => {
+            if (!input) return;
+            const value = parseInt(input.value);
+            if (value > 1) input.value = value - 1;
+        });
+
+        increaseBtn?.addEventListener('click', () => {
+            if (!input) return;
+            input.value = parseInt(input.value) + 1;
+        });
+    });
+
+    // Back to Top
+    const backToTopButton = document.getElementById('back-to-top');
+    const handleScroll = () => {
+        if (!backToTopButton) return;
+        if (window.pageYOffset > 300) {
+            setClasses(backToTopButton, 'opacity-0 invisible', false);
+            setClasses(backToTopButton, 'opacity-100');
+        } else {
+            setClasses(backToTopButton, 'opacity-100', false);
+            setClasses(backToTopButton, 'opacity-0');
+            setTimeout(() => setClasses(backToTopButton, 'invisible'), 300);
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    backToTopButton?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Product Slider
+    const productGrid = document.querySelector('.grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-3');
+    const controlsContainer = document.querySelector('.flex.flex-wrap.items-center.gap-4');
+    
+    if (productGrid && controlsContainer) {
+        let scrollPosition = 0;
+        const scrollAmount = 300;
+
+        const navButtons = document.createElement('div');
+        navButtons.className = 'flex space-x-2';
+        navButtons.innerHTML = `
+            <button class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-primary border border-gray-300 rounded-full" aria-label="Previous Product">
+                <i class="ri-arrow-left-s-line ri-lg"></i>
+            </button>
+            <button class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-primary border border-gray-300 rounded-full" aria-label="Next Product">
+                <i class="ri-arrow-right-s-line ri-lg"></i>
+            </button>
+        `;
+        controlsContainer.appendChild(navButtons);
+
+        const prevButton = navButtons.querySelector('[aria-label="Previous Product"]');
+        const nextButton = navButtons.querySelector('[aria-label="Next Product"]');
+
+        prevButton?.addEventListener('click', () => {
+            scrollPosition = Math.max(scrollPosition - scrollAmount, 0);
+            productGrid.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+        });
+
+        nextButton?.addEventListener('click', () => {
+            scrollPosition += scrollAmount;
+            productGrid.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+        });
+    }
+});
+    </script>
+</body>
+</html>

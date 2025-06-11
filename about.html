@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - SafetyGear</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0066cc',
+                        secondary: '#ff9900'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Top Bar -->
+    <div class="bg-gray-50 py-2 border-b border-gray-100">
+        <div class="container mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 mb-2 md:mb-0">
+                <div class="flex items-center text-sm text-gray-600">
+                    <i class="ri-phone-line mr-2"></i>
+                    <span>+254 715 135 141</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600">
+                    <i class="ri-mail-line mr-2"></i>
+                    <span>info@safetygear.co.ke</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition" aria-label="Facebook">
+                    <i class="ri-facebook-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition" aria-label="Twitter">
+                    <i class="ri-twitter-x-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition" aria-label="LinkedIn">
+                    <i class="ri-linkedin-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition" aria-label="Instagram">
+                    <i class="ri-instagram-line"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" aria-label="Safety Gear Home">
+                    <img src="/images/logo.png" alt="Safety Gear Logo" class="h-12 w-auto">
+                </a>
+                <nav class="hidden md:flex ml-6 space-x-6" aria-label="Main navigation">
+                    <a href="index.html" class="text-gray-600 hover:text-primary font-medium">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-primary font-medium">Shop</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-primary font-medium">Categories</a>
+                    <a href="bulk-orders.html" class="text-gray-600 hover:text-primary font-medium">Bulk Orders</a>
+                    <a href="#" class="text-primary font-medium border-b-2 border-primary pb-1">About</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center relative">
+                    <input type="search" placeholder="Search products..." class="border border-gray-300 rounded-button pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary w-64" aria-label="Search products">
+                    <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                        <i class="ri-search-line"></i>
+                    </div>
+                </div>
+                <button id="mobile-search-toggle" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-full" aria-label="Search">
+                    <i class="ri-search-line ri-lg"></i>
+                </button>
+                <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-full" aria-label="User Account">
+                    <i class="ri-user-line ri-lg"></i>
+                </a>
+                <button id="cart-toggle" class="w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-full relative" aria-label="Shopping Cart">
+                    <i class="ri-shopping-cart-line ri-lg"></i>
+                    <span class="absolute -top-1 -right-1 bg-primary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                </button>
+                <button id="mobile-menu-toggle" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-full" aria-label="Menu">
+                    <i class="ri-menu-line ri-lg"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-search" class="mt-4 hidden md:hidden px-4">
+            <div class="relative">
+                <input type="search" placeholder="Search products..." class="border border-gray-300 rounded-button pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary w-full" aria-label="Search products">
+                <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                    <i class="ri-search-line"></i>
+                </div>
+            </div>
+        </div>
+        <nav id="mobile-menu" class="mt-4 hidden md:hidden flex flex-col space-y-2 pb-2 px-4">
+            <a href="index.html" class="text-gray-600 hover:text-primary font-medium py-2">Home</a>
+            <a href="shop.html" class="text-gray-600 hover:text-primary font-medium py-2">Shop</a>
+            <a href="categories.html" class="text-gray-600 hover:text-primary font-medium py-2">Categories</a>
+            <a href="bulk-orders.html" class="text-gray-600 hover:text-primary font-medium py-2">Bulk Orders</a>
+            <a href="#" class="text-primary font-medium py-2 border-l-4 border-primary pl-2">About</a>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b">
+        <div class="container mx-auto px-4 py-3">
+            <nav class="flex items-center text-sm text-gray-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-primary">Home</a>
+                <span class="mx-2">/</span>
+                <span class="font-medium text-gray-900">About Us</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Company Overview -->
+        <section class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About SafetyGear</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Since 2010, SafetyGear has been Kenya’s trusted provider of high-quality personal protective equipment, ensuring safety and peace of mind for workers across industries.</p>
+        </section>
+
+        <!-- Our Story -->
+        <section class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">Our Story</h2>
+                    <p class="text-gray-600 mb-4">Founded in Nairobi in 2010, SafetyGear began with a mission to provide reliable and affordable safety equipment to Kenyan workers. From construction sites to manufacturing plants, we recognized the need for durable, certified protective gear that meets international standards like ANSI, CE, and NIOSH.</p>
+                    <p class="text-gray-600">Over the years, we’ve grown into a leading supplier, serving businesses and individuals across East Africa. Our commitment to quality, innovation, and customer satisfaction remains at the core of everything we do.</p>
+                </div>
+                <div>
+                    <img src="https://readdy.ai/api/search-image?query=modern%20safety%20equipment%20warehouse%20in%20Nairobi%2C%20professional%20photography%2C%20high%20quality&width=600&height=400&seq=1&orientation=landscape" alt="SafetyGear Warehouse" class="w-full h-64 object-cover rounded-lg shadow-sm" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission and Values -->
+        <section class="bg-white rounded-lg shadow-sm p-8 mb-12">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Our Mission & Values</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <i class="ri-shield-check-line text-4xl text-primary mb-4"></i>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Safety First</h3>
+                    <p class="text-gray-600 text-sm">We prioritize worker safety by offering only certified, high-quality protective equipment.</p>
+                </div>
+                <div class="text-center">
+                    <i class="ri-heart-line text-4xl text-primary mb-4"></i>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Customer Care</h3>
+                    <p class="text-gray-600 text-sm">Our team is dedicated to providing exceptional service and support to every client.</p>
+                </div>
+                <div class="text-center">
+                    <i class="ri-leaf-line text-4xl text-primary mb-4"></i>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Sustainability</h3>
+                    <p class="text-gray-600 text-sm">We strive to source eco-friendly products and reduce our environmental impact.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Team -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Meet Our Team</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20Kenyan%20male%20business%20leader%2C%20suit%2C%20smiling%2C%20studio%20lighting&width=200&height=200&seq=1&orientation=squarish" alt="James Mwangi" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy">
+                    <h3 class="text-lg font-medium text-gray-900">James Mwangi</h3>
+                    <p class="text-sm text-gray-500">Founder & CEO</p>
+                    <p class="text-sm text-gray-600 mt-2">With over 15 years in safety solutions, James leads SafetyGear with a passion for worker protection.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20Kenyan%20female%20business%20leader%2C%20suit%2C%20smiling%2C%20studio%20lighting&width=200&height=200&seq=2&orientation=squarish" alt="Grace Njeri" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy">
+                    <h3 class="text-lg font-medium text-gray-900">Grace Njeri</h3>
+                    <p class="text-sm text-gray-500">Operations Manager</p>
+                    <p class="text-sm text-gray-600 mt-2">Grace ensures our supply chain runs smoothly, delivering products on time, every time.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20Kenyan%20male%20business%20leader%2C%20suit%2C%20smiling%2C%20studio%20lighting&width=200&height=200&seq=3&orientation=squarish" alt="Peter Otieno" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy">
+                    <h3 class="text-lg font-medium text-gray-900">Peter Otieno</h3>
+                    <p class="text-sm text-gray-500">Sales Director</p>
+                    <p class="text-sm text-gray-600 mt-2">Peter builds strong client relationships, helping businesses find the right safety solutions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us -->
+        <section class="bg-primary text-white rounded-lg p-8 text-center">
+            <h2 class="text-2xl font-semibold mb-4">Get in Touch</h2>
+            <p class="text-lg mb-6 max-w-2xl mx-auto">Have questions or need bulk orders? Contact our team today for personalized assistance.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="tel:+254715135141" class="bg-white text-primary font-medium py-2 px-6 rounded-button flex items-center justify-center hover:bg-gray-100" aria-label="Call Us">
+                    <i class="ri-phone-line mr-2"></i> Call Us
+                </a>
+                <a href="mailto:info@safetygear.co.ke" class="bg-white text-primary font-medium py-2 px-6 rounded-button flex items-center justify-center hover:bg-gray-100" aria-label="Email Us">
+                    <i class="ri-mail-line mr-2"></i> Email Us
+                </a>
+                <a href="https://wa.me/254715135141" class="bg-white text-primary font-medium py-2 px-6 rounded-button flex items-center justify-center hover:bg-gray-100" aria-label="WhatsApp Us">
+                    <i class="ri-whatsapp-line mr-2"></i> WhatsApp Us
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-96 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex flex-col h-full">
+            <div class="p-4 border-b">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-semibold text-gray-900">Shopping Cart (3)</h2>
+                    <button id="close-cart" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700" aria-label="Close Cart">
+                        <i class="ri-close-line ri-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flex-1 overflow-y-auto p-4 space-y-4">
+                <div class="flex items-start space-x-4">
+                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20helmet%20hard%20hat%20with%20white%20color%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=80&height=80&seq=1&orientation=squarish" alt="Safety Helmet Pro" class="w-20 h-20 object-cover rounded-lg" loading="lazy">
+                    <div class="flex-1">
+                        <h3 class="text-sm font-medium text-gray-900">Safety Helmet Pro X500</h3>
+                        <p class="text-sm text-gray-500">White</p>
+                        <div class="flex items-center mt-2">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full" aria-label="Decrease Quantity">-</button>
+                            <input type="number" value="1" min="1" class="w-10 h-6 text-center text-sm mx-2 border-none" aria-label="Quantity">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full" aria-label="Increase Quantity">+</button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-medium text-gray-900">$59.99</p>
+                        <button class="text-sm text-red-500 hover:text-red-600 mt-1" aria-label="Remove Safety Helmet">Remove</button>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20gloves%20with%20reinforced%20palms%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=80&height=80&seq=2&orientation=squarish" alt="Work Gloves" class="w-20 h-20 object-cover rounded-lg" loading="lazy">
+                    <div class="flex-1">
+                        <h3 class="text-sm font-medium text-gray-900">Heavy Duty Work Gloves</h3>
+                        <p class="text-sm text-gray-500">Large</p>
+                        <div class="flex items-center mt-2">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full" aria-label="Decrease Quantity">-</button>
+                            <input type="number" value="1" min="1" class="w-10 h-6 text-center text-sm mx-2 border-none" aria-label="Quantity">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full" aria-label="Increase Quantity">+</button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-medium text-gray-900">$24.95</p>
+                        <button class="text-sm text-red-500 hover:text-red-600 mt-1" aria-label="Remove Work Gloves">Remove</button>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20goggles%20with%20anti-fog%20lens%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=80&height=80&seq=3&orientation=squarish" alt="Safety Goggles" class="w-20 h-20 object-cover rounded-lg" loading="lazy">
+                    <div class="flex-1">
+                        <h3 class="text-sm font-medium text-gray-900">Anti-Fog Safety Goggles</h3>
+                        <p class="text-sm text-gray-500">Universal</p>
+                        <div class="flex items-center mt-2">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full" aria-label="Decrease Quantity">-</button>
+                            <input type="number" value="1" min="1" class="w-10 h-6 text-center text-sm mx-2 border-none" aria-label="Quantity">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full" aria-label="Increase Quantity">+</button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-medium text-gray-900">$32.50</p>
+                        <button class="text-sm text-red-500 hover:text-red-600 mt-1" aria-label="Remove Safety Goggles">Remove</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t p-4 space-y-4">
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">Subtotal</span>
+                    <span class="font-medium text-gray-900">$117.44</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">Shipping</span>
+                    <span class="font-medium text-gray-900">Calculated at checkout</span>
+                </div>
+                <div class="flex justify-between text-base font-medium">
+                    <span class="text-gray-900">Total</span>
+                    <span class="text-gray-900">$117.44</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button id="continue-shopping" class="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-button" aria-label="Continue Shopping">Continue Shopping</button>
+                    <button class="w-full px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-button" aria-label="Proceed to Checkout">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"></div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/254715135141" class="whatsapp-float" target="_blank" aria-label="Contact via WhatsApp">
+        <div class="w-16 h-16 flex items-center justify-center bg-green-500 text-white rounded-full shadow-lg">
+            <i class="ri-whatsapp-line text-3xl"></i>
+        </div>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-16 pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <a href="index.html" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">SafetyGear</a>
+                    <p class="text-gray-400 mb-4">Your trusted source for high-quality personal protective equipment and safety solutions since 2010.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Facebook">
+                            <i class="ri-facebook-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Twitter">
+                            <i class="ri-twitter-x-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors" aria-label="Instagram">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors" aria-label="LinkedIn">
+                            <i class="ri-linkedin-line"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="shop.html" class="text-gray-400 hover:text-white transition-colors">Shop</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-white transition-colors">Categories</a></li>
+                        <li><a href="bulk-orders.html" class="text-gray-400 hover:text-white transition-colors">Bulk Orders</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">My Account</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Order Tracking</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Shipping Information</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Returns & Exchanges</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="ri-map-pin-line text-gray-400 mr-3 mt-0.5"></i>
+                            <span class="text-gray-400">123 Safety Road, Industrial District, Nairobi, Kenya</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-phone-line text-gray-400 mr-3"></i>
+                            <span class="text-gray-400">+254 715 135 141</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-mail-line text-gray-400 mr-3"></i>
+                            <span class="text-gray-400">info@safetygear.co.ke</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-time-line text-gray-400 mr-3"></i>
+                            <span class="text-gray-400">Mon-Fri: 8AM-6PM, Sat: 9AM-4PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 SafetyGear. All rights reserved.</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Shipping Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Refund Policy</a>
+                    </div>
+                </div>
+                <div class="flex justify-center mt-6 space-x-4">
+                    <i class="ri-visa-line ri-lg text-gray-400"></i>
+                    <i class="ri-mastercard-line ri-lg text-gray-400"></i>
+                    <i class="ri-paypal-line ri-lg text-gray-400"></i>
+                    <i class="ri-apple-line ri-lg text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Utility Functions
+            const toggleElement = (element, show) => element.classList.toggle('hidden', !show);
+            const setClasses = (element, classes, add = true) => element.classList[add ? 'add' : 'remove'](...classes.split(' '));
+
+            // Mobile Menu
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuToggle?.addEventListener('click', () => toggleElement(mobileMenu, !mobileMenu.classList.contains('hidden')));
+
+            // Mobile Search
+            const mobileSearchToggle = document.getElementById('mobile-search-toggle');
+            const mobileSearch = document.getElementById('mobile-search');
+            mobileSearchToggle?.addEventListener('click', () => toggleElement(mobileSearch, !mobileSearch.classList.contains('hidden')));
+
+            // Cart Sidebar
+            const cartToggle = document.getElementById('cart-toggle');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const closeCart = document.getElementById('close-cart');
+            const cartOverlay = document.getElementById('cart-overlay');
+            const continueShopping = document.getElementById('continue-shopping');
+
+            const openCart = () => {
+                if (!cartSidebar || !cartOverlay) return;
+                setClasses(cartSidebar, 'translate-x-full', false);
+                toggleElement(cartOverlay, true);
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeCart = () => {
+                if (!cartSidebar || !cartOverlay) return;
+                setClasses(cartSidebar, 'translate-x-full');
+                toggleElement(cartOverlay, false);
+                document.body.style.overflow = '';
+            };
+
+            cartToggle?.addEventListener('click', openCart);
+            closeCart?.addEventListener('click', closeCart);
+            continueShopping?.addEventListener('click', closeCart);
+            cartOverlay?.addEventListener('click', closeCart);
+
+            // Cart Quantity Controls
+            const quantityContainers = document.querySelectorAll('#cart-sidebar .flex.items-center');
+            quantityContainers.forEach(container => {
+                const decreaseBtn = container.querySelector('button:first-child');
+                const increaseBtn = container.querySelector('button:last-child');
+                const input = container.querySelector('input');
+
+                decreaseBtn?.addEventListener('click', () => {
+                    if (!input) return;
+                    const value = parseInt(input.value);
+                    if (value > 1) input.value = value - 1;
+                });
+
+                increaseBtn?.addEventListener('click', () => {
+                    if (!input) return;
+                    input.value = parseInt(input.value) + 1;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
