@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Categories - SafetyGear</title>
-    <link rel="icon" href="images/fav.png" type="image/x-icon">
-    <meta name="description" content="Explore SafetyGear's range of personal protective equipment categories, including head, eye, respiratory, and more in Kenya.">
-    <meta name="keywords" content="PPE categories, safety equipment Kenya, safety helmets, safety goggles, SafetyGear">
+    <title>Contact Us - SafetyGear</title>
+    <meta name="description" content="Contact SafetyGear for inquiries about personal protective equipment in Kenya. Reach us via phone, email, or WhatsApp.">
+    <meta name="keywords" content="contact SafetyGear, PPE Kenya, safety equipment inquiries, Nairobi safety gear">
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <script>
         tailwind.config = {
@@ -59,12 +58,10 @@
         .whatsapp-float:hover {
             transform: scale(1.1);
         }
-        .category-card {
-            transition: all 0.3s ease;
-        }
-        .category-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        .error {
+            color: #dc2626;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
         }
     </style>
 </head>
@@ -104,14 +101,15 @@
         <div class="container mx-auto px-4 py-4 flex items-center justify-between">
             <div class="flex items-center">
                 <a href="index.html" aria-label="Safety Gear Home">
-                    <img src="images/logo.png" alt="Safety Gear Logo" class="h-12 w-auto">
+                    <img src="/assets/logo.png" alt="Safety Gear Logo" class="h-12 w-auto">
                 </a>
                 <nav class="hidden md:flex ml-6 space-x-6" aria-label="Main navigation">
                     <a href="index.html" class="text-gray-600 hover:text-primary font-medium">Home</a>
                     <a href="shop.html" class="text-gray-600 hover:text-primary font-medium">Shop</a>
-                    <a href="categories.html" class="text-primary font-medium border-b-2 border-primary pb-1">Categories</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-primary font-medium">Categories</a>
                     <a href="bulk-orders.html" class="text-gray-600 hover:text-primary font-medium">Bulk Orders</a>
                     <a href="about.html" class="text-gray-600 hover:text-primary font-medium">About</a>
+                    <a href="#" class="text-primary font-medium border-b-2 border-primary pb-1">Contact</a>
                 </nav>
             </div>
             <div class="flex items-center space-x-4">
@@ -138,18 +136,19 @@
         </div>
         <div id="mobile-search" class="mt-4 hidden md:hidden px-4">
             <div class="relative">
-                <input type="search" placeholder="Search products..." class="border border-gray-300 rounded-button pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary w-full" aria-label="Search products">
+                <input type="search" placeholder="Search products..." class="border border-gray-300 rounded-button py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary w-full" aria-label="Search products">
                 <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                     <i class="ri-search-line"></i>
                 </div>
             </div>
         </div>
-        <nav id="mobile-menu" class="mt-4 hidden md:hidden flex flex-col space-y-2 pb-2 px-4">
+        <nav id="mobile-menu" class="mt-4 hidden md:hidden flex flex-col space-y-2 px-4 pb-2">
             <a href="index.html" class="text-gray-600 hover:text-primary font-medium py-2">Home</a>
             <a href="shop.html" class="text-gray-600 hover:text-primary font-medium py-2">Shop</a>
-            <a href="categories.html" class="text-primary font-medium py-2 border-l-4 border-primary pl-2">Categories</a>
+            <a href="categories.html" class="text-gray-600 hover:text-primary font-medium py-2">Categories</a>
             <a href="bulk-orders.html" class="text-gray-600 hover:text-primary font-medium py-2">Bulk Orders</a>
             <a href="about.html" class="text-gray-600 hover:text-primary font-medium py-2">About</a>
+            <a href="#" class="text-primary font-medium py-2 border-l-4 border-primary pl-2">Contact</a>
         </nav>
     </header>
 
@@ -159,7 +158,7 @@
             <nav class="flex items-center text-sm text-gray-500" aria-label="Breadcrumb">
                 <a href="index.html" class="hover:text-primary">Home</a>
                 <span class="mx-2">/</span>
-                <span class="font-medium text-gray-900">Categories</span>
+                <span class="font-medium text-gray-900">Contact</span>
             </nav>
         </div>
     </div>
@@ -168,80 +167,75 @@
     <main class="container mx-auto px-4 py-8">
         <!-- Hero Section -->
         <section class="text-center mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Explore Our Categories</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Discover SafetyGear’s wide range of personal protective equipment, designed to keep you safe in any work environment across Kenya.</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Contact SafetyGear</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Have questions about our products or need assistance? Our team is here to help. Reach out via phone, email, or WhatsApp.</p>
         </section>
 
-        <!-- Categories Grid -->
+        <!-- Contact Information -->
         <section class="mb-12">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Head Protection -->
-                <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20helmet%20hard%20hat%20with%20white%20color%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=1&orientation=landscape" alt="Head Protection" class="w-full h-48 object-cover object-center" loading="lazy">
-                    <div class="p-6">
-                        <h2 class="text-lg font-semibold text-gray-900 mb-2">Head Protection</h2>
-                        <p class="text-gray-600 text-sm mb-4">High-impact safety helmets and hard hats certified to ANSI and CE standards for construction and industrial use.</p>
-                        <a href="shop.html?category=head-protection" class="inline-block bg-primary text-white text-sm font-medium py-2 px-4 rounded-button hover:bg-primary/90" aria-label="Shop Head Protection">Shop Now</a>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <i class="ri-phone-line text-4xl text-primary mb-4"></i>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Phone</h3>
+                    <p class="text-gray-600 text-sm mb-4">Call us for immediate assistance.</p>
+                    <a href="tel:+254715135141" class="text-primary font-medium hover:underline" aria-label="Call SafetyGear">+254 715 135 141</a>
                 </div>
-
-                <!-- Eye Protection -->
-                <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20goggles%20with%20anti-fog%20lens%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=2&orientation=landscape" alt="Eye Protection" class="w-full h-48 object-cover object-center" loading="lazy">
-                    <div class="p-6">
-                        <h2 class="text-lg font-semibold text-gray-900 mb-2">Eye Protection</h2>
-                        <p class="text-gray-600 text-sm mb-4">Anti-fog safety goggles and protective glasses designed for clear vision and maximum safety.</p>
-                        <a href="shop.html?category=eye-protection" class="inline-block bg-primary text-white text-sm font-medium py-2 px-4 rounded-button hover:bg-primary/90" aria-label="Shop Eye Protection">Shop Now</a>
-                    </div>
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <i class="ri-mail-line text-4xl text-primary mb-4"></i>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Email</h3>
+                    <p class="text-gray-600 text-sm mb-4">Send us your inquiries.</p>
+                    <a href="mailto:info@safetygear.co.ke" class="text-primary font-medium hover:underline" aria-label="Email SafetyGear">info@safetygear.co.ke</a>
                 </div>
-
-                <!-- Respiratory Protection -->
-                <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=professional%20n95%20respirator%20mask%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=3&orientation=landscape" alt="Respiratory Protection" class="w-full h-48 object-cover object-center" loading="lazy">
-                    <div class="p-6">
-                        <h2 class="text-lg font-semibold text-gray-900 mb-2">Respiratory Protection</h2>
-                        <p class="text-gray-600 text-sm mb-4">NIOSH-certified N95 respirators and dust masks for protection against airborne hazards.</p>
-                        <a href="shop.html?category=respiratory-protection" class="inline-block bg-primary text-white text-sm font-medium py-2 px-4 rounded-button hover:bg-primary/90" aria-label="Shop Respiratory Protection">Shop Now</a>
-                    </div>
-                </div>
-
-                <!-- Hand Protection -->
-                <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20gloves%20with%20reinforced%20palms%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=4&orientation=landscape" alt="Hand Protection" class="w-full h-48 object-cover object-center" loading="lazy">
-                    <div class="p-6">
-                        <h2 class="text-lg font-semibold text-gray-900 mb-2">Hand Protection</h2>
-                        <p class="text-gray-600 text-sm mb-4">Durable work gloves with reinforced palms for handling heavy materials and tools.</p>
-                        <a href="shop.html?category=hand-protection" class="inline-block bg-primary text-white text-sm font-medium py-2 px-4 rounded-button hover:bg-primary/90" aria-label="Shop Hand Protection">Shop Now</a>
-                    </div>
-                </div>
-
-                <!-- Foot Protection -->
-                <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=professional%20steel%20toe%20safety%20boots%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=5&orientation=landscape" alt="Foot Protection" class="w-full h-48 object-cover object-center" loading="lazy">
-                    <div class="p-6">
-                        <h2 class="text-lg font-semibold text-gray-900 mb-2">Foot Protection</h2>
-                        <p class="text-gray-600 text-sm mb-4">Steel toe safety boots and slip-resistant shoes for ultimate foot safety on any site.</p>
-                        <a href="shop.html?category=foot-protection" class="inline-block bg-primary text-white text-sm font-medium py-2 px-4 rounded-button hover:bg-primary/90" aria-label="Shop Foot Protection">Shop Now</a>
-                    </div>
-                </div>
-
-                <!-- Fall Protection -->
-                <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20harness%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=6&orientation=landscape" alt="Fall Protection" class="w-full h-48 object-cover object-center" loading="lazy">
-                    <div class="p-6">
-                        <h2 class="text-lg font-semibold text-gray-900 mb-2">Fall Protection</h2>
-                        <p class="text-gray-600 text-sm mb-4">Safety harnesses and lanyards designed for secure work at heights.</p>
-                        <a href="shop.html?category=fall-protection" class="inline-block bg-primary text-white text-sm font-medium py-2 px-4 rounded-button hover:bg-primary/90" aria-label="Shop Fall Protection">Shop Now</a>
-                    </div>
+                <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                    <i class="ri-map-pin-line text-4xl text-primary mb-4"></i>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Address</h3>
+                    <p class="text-gray-600 text-sm">123 Safety Road, Industrial District, Nairobi, Kenya</p>
                 </div>
             </div>
         </section>
 
-        <!-- Call to Action -->
-        <section class="bg-primary text-white rounded-lg p-8 text-center">
-            <h2 class="text-2xl font-semibold mb-4">Need Bulk Orders?</h2>
-            <p class="text-lg mb-6 max-w-2xl mx-auto">Equip your team with our certified PPE. Request a customized quote for bulk orders today.</p>
-            <a href="bulk-orders.html" class="inline-block bg-white text-primary font-medium py-3 px-6 rounded-button hover:bg-gray-100" aria-label="Request Bulk Order Quote">Request a Quote</a>
+        <!-- Contact Form -->
+        <section class="bg-white rounded-lg shadow-sm p-8 mb-12">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Send Us a Message</h2>
+            <p class="text-gray-600 text-center mb-6 max-w-2xl mx-auto">Fill out the form below, and we’ll get back to you within 24 hours.</p>
+            <form id="contact-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-button py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary" aria-label="Full Name" required>
+                    <p id="name-error" class="error hidden">Please enter your full name.</p>
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="email" name="email" class="w-full border border-gray-300 rounded-button py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary" aria-label="Email Address" required>
+                    <p id="email-error" class="error hidden">Please enter a valid email address.</p>
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="w-full border border-gray-300 rounded-button py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary" aria-label="Phone Number">
+                    <p id="phone-error" class="error hidden">Please enter a valid phone number.</p>
+                </div>
+                <div>
+                    <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                    <input type="text" id="subject" name="subject" class="w-full border border-gray-300 rounded-button py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary" aria-label="Subject" required>
+                    <p id="subject-error" class="error hidden">Please enter a subject.</p>
+                </div>
+                <div class="md:col-span-2">
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                    <textarea id="message" name="message" rows="5" class="w-full border border-gray-300 rounded-button py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary" aria-label="Message" required></textarea>
+                    <p id="message-error" class="error hidden">Please enter your message.</p>
+                </div>
+                <div class="md:col-span-2 text-center">
+                    <button type="submit" class="bg-primary text-white font-medium py-3 px-6 rounded-button hover:bg-primary/90" aria-label="Submit Contact Form">Send Message</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Map Placeholder -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Find Us</h2>
+            <div class="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
+                <p class="text-gray-600 text-sm">[Map Placeholder: 123 Safety Road, Industrial District, Nairobi, Kenya]</p>
+            </div>
         </section>
     </main>
 
@@ -375,7 +369,7 @@
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Order Tracking</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Shipping Information</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Returns & Exchanges</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
                     </ul>
                 </div>
                 <div>
@@ -479,6 +473,42 @@
                     if (!input) return;
                     input.value = parseInt(input.value) + 1;
                 });
+            });
+
+            // Form Validation
+            const form = document.getElementById('contact-form');
+            const fields = [
+                { id: 'name', errorId: 'name-error', validate: value => value.trim().length > 0, message: 'Please enter your full name.' },
+                { id: 'email', errorId: 'email-error', validate: value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value), message: 'Please enter a valid email address.' },
+                { id: 'phone', errorId: 'phone-error', validate: value => !value || /^\+?\d{10,15}$/.test(value.replace(/\s/g, '')), message: 'Please enter a valid phone number.' },
+                { id: 'subject', errorId: 'subject-error', validate: value => value.trim().length > 0, message: 'Please enter a subject.' },
+                { id: 'message', errorId: 'message-error', validate: value => value.trim().length > 0, message: 'Please enter your message.' }
+            ];
+
+            form?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let isValid = true;
+
+                fields.forEach(field => {
+                    const input = document.getElementById(field.id);
+                    const error = document.getElementById(field.errorId);
+                    if (!input || !error) return;
+
+                    const value = input.value;
+                    if (!field.validate(value)) {
+                        toggleElement(error, true);
+                        error.textContent = field.message;
+                        isValid = false;
+                    } else {
+                        toggleElement(error, false);
+                    }
+                });
+
+                if (isValid) {
+                    // Simulate form submission
+                    alert('Message sent successfully! We will respond within 24 hours.');
+                    form.reset();
+                }
             });
         });
     </script>

@@ -1,12 +1,50 @@
-<!DOCTYPE html>
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Categories - SafetyGear</title>
-    <link rel="icon" href="images/fav.png" type="image/x-icon">
-    <meta name="description" content="Explore SafetyGear's range of personal protective equipment categories, including head, eye, respiratory, and more in Kenya.">
-    <meta name="keywords" content="PPE categories, safety equipment Kenya, safety helmets, safety goggles, SafetyGear">
+    <title>Privacy Policy - SafetyGear</title>
+    <meta name="description" content="Read SafetyGear's Privacy Policy to understand how we collect, use, and protect your personal information in Kenya.">
+    <meta name="keywords" content="SafetyGear privacy policy, PPE Kenya, data protection, Nairobi safety gear">
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <script>
         tailwind.config = {
@@ -59,13 +97,6 @@
         .whatsapp-float:hover {
             transform: scale(1.1);
         }
-        .category-card {
-            transition: all 0.3s ease;
-        }
-        .category-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -104,14 +135,15 @@
         <div class="container mx-auto px-4 py-4 flex items-center justify-between">
             <div class="flex items-center">
                 <a href="index.html" aria-label="Safety Gear Home">
-                    <img src="images/logo.png" alt="Safety Gear Logo" class="h-12 w-auto">
+                    <img src="/assets/logo.png" alt="Safety Gear Logo" class="h-12 w-auto">
                 </a>
                 <nav class="hidden md:flex ml-6 space-x-6" aria-label="Main navigation">
                     <a href="index.html" class="text-gray-600 hover:text-primary font-medium">Home</a>
                     <a href="shop.html" class="text-gray-600 hover:text-primary font-medium">Shop</a>
-                    <a href="categories.html" class="text-primary font-medium border-b-2 border-primary pb-1">Categories</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-primary font-medium">Categories</a>
                     <a href="bulk-orders.html" class="text-gray-600 hover:text-primary font-medium">Bulk Orders</a>
                     <a href="about.html" class="text-gray-600 hover:text-primary font-medium">About</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-primary font-medium">Contact</a>
                 </nav>
             </div>
             <div class="flex items-center space-x-4">
@@ -147,9 +179,10 @@
         <nav id="mobile-menu" class="mt-4 hidden md:hidden flex flex-col space-y-2 pb-2 px-4">
             <a href="index.html" class="text-gray-600 hover:text-primary font-medium py-2">Home</a>
             <a href="shop.html" class="text-gray-600 hover:text-primary font-medium py-2">Shop</a>
-            <a href="categories.html" class="text-primary font-medium py-2 border-l-4 border-primary pl-2">Categories</a>
+            <a href="categories.html" class="text-gray-600 hover:text-primary font-medium py-2">Categories</a>
             <a href="bulk-orders.html" class="text-gray-600 hover:text-primary font-medium py-2">Bulk Orders</a>
             <a href="about.html" class="text-gray-600 hover:text-primary font-medium py-2">About</a>
+            <a href="contact.html" class="text-gray-600 hover:text-primary font-medium py-2">Contact</a>
         </nav>
     </header>
 
@@ -159,7 +192,7 @@
             <nav class="flex items-center text-sm text-gray-500" aria-label="Breadcrumb">
                 <a href="index.html" class="hover:text-primary">Home</a>
                 <span class="mx-2">/</span>
-                <span class="font-medium text-gray-900">Categories</span>
+                <span class="font-medium text-gray-900">Privacy Policy</span>
             </nav>
         </div>
     </div>
@@ -168,80 +201,80 @@
     <main class="container mx-auto px-4 py-8">
         <!-- Hero Section -->
         <section class="text-center mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Explore Our Categories</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Discover SafetyGear’s wide range of personal protective equipment, designed to keep you safe in any work environment across Kenya.</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">At SafetyGear, we are committed to protecting your privacy. This policy explains how we collect, use, and safeguard your personal information.</p>
         </section>
 
-        <!-- Categories Grid -->
-        <section class="mb-12">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Head Protection -->
-                <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20helmet%20hard%20hat%20with%20white%20color%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=1&orientation=landscape" alt="Head Protection" class="w-full h-48 object-cover object-center" loading="lazy">
-                    <div class="p-6">
-                        <h2 class="text-lg font-semibold text-gray-900 mb-2">Head Protection</h2>
-                        <p class="text-gray-600 text-sm mb-4">High-impact safety helmets and hard hats certified to ANSI and CE standards for construction and industrial use.</p>
-                        <a href="shop.html?category=head-protection" class="inline-block bg-primary text-white text-sm font-medium py-2 px-4 rounded-button hover:bg-primary/90" aria-label="Shop Head Protection">Shop Now</a>
-                    </div>
+        <!-- Policy Content -->
+        <section class="bg-white rounded-lg shadow-sm p-8 mb-12">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">Our Privacy Commitment</h2>
+            <div class="space-y-6 text-gray-600 text-sm">
+                <div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">1. Information We Collect</h3>
+                    <p>We collect information you provide directly, such as:</p>
+                    <ul class="list-disc pl-5 mt-2">
+                        <li>Name, email address, phone number, and company details when you place an order, submit a form, or contact us.</li>
+                        <li>Billing and shipping information during checkout.</li>
+                        <li>Information from inquiries or bulk order requests.</li>
+                    </ul>
+                    <p class="mt-2">We also collect data automatically, including:</p>
+                    <ul class="list-disc pl-5 mt-2">
+                        <li>IP address, browser type, and device information.</li>
+                        <li>Website usage data via cookies (e.g., pages visited, time spent).</li>
+                    </ul>
                 </div>
-
-                <!-- Eye Protection -->
-                <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20goggles%20with%20anti-fog%20lens%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=2&orientation=landscape" alt="Eye Protection" class="w-full h-48 object-cover object-center" loading="lazy">
-                    <div class="p-6">
-                        <h2 class="text-lg font-semibold text-gray-900 mb-2">Eye Protection</h2>
-                        <p class="text-gray-600 text-sm mb-4">Anti-fog safety goggles and protective glasses designed for clear vision and maximum safety.</p>
-                        <a href="shop.html?category=eye-protection" class="inline-block bg-primary text-white text-sm font-medium py-2 px-4 rounded-button hover:bg-primary/90" aria-label="Shop Eye Protection">Shop Now</a>
-                    </div>
+                <div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">2. How We Use Your Information</h3>
+                    <p>Your information is used to:</p>
+                    <ul class="list-disc pl-5 mt-2">
+                        <li>Process and fulfill orders, including shipping and billing.</li>
+                        <li>Respond to inquiries and provide customer support.</li>
+                        <li>Improve our website, products, and services.</li>
+                        <li>Send promotional emails or offers (with your consent).</li>
+                        <li>Comply with legal obligations in Kenya.</li>
+                    </ul>
                 </div>
-
-                <!-- Respiratory Protection -->
-                <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=professional%20n95%20respirator%20mask%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=3&orientation=landscape" alt="Respiratory Protection" class="w-full h-48 object-cover object-center" loading="lazy">
-                    <div class="p-6">
-                        <h2 class="text-lg font-semibold text-gray-900 mb-2">Respiratory Protection</h2>
-                        <p class="text-gray-600 text-sm mb-4">NIOSH-certified N95 respirators and dust masks for protection against airborne hazards.</p>
-                        <a href="shop.html?category=respiratory-protection" class="inline-block bg-primary text-white text-sm font-medium py-2 px-4 rounded-button hover:bg-primary/90" aria-label="Shop Respiratory Protection">Shop Now</a>
-                    </div>
+                <div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">3. Sharing Your Information</h3>
+                    <p>We do not sell your personal data. We may share it with:</p>
+                    <ul class="list-disc pl-5 mt-2">
+                        <li>Trusted service providers (e.g., payment processors, shipping companies) to fulfill orders.</li>
+                        <li>Legal authorities if required by Kenyan law.</li>
+                    </ul>
                 </div>
-
-                <!-- Hand Protection -->
-                <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20gloves%20with%20reinforced%20palms%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=4&orientation=landscape" alt="Hand Protection" class="w-full h-48 object-cover object-center" loading="lazy">
-                    <div class="p-6">
-                        <h2 class="text-lg font-semibold text-gray-900 mb-2">Hand Protection</h2>
-                        <p class="text-gray-600 text-sm mb-4">Durable work gloves with reinforced palms for handling heavy materials and tools.</p>
-                        <a href="shop.html?category=hand-protection" class="inline-block bg-primary text-white text-sm font-medium py-2 px-4 rounded-button hover:bg-primary/90" aria-label="Shop Hand Protection">Shop Now</a>
-                    </div>
+                <div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">4. Data Security</h3>
+                    <p>We use industry-standard security measures, including encryption and secure servers, to protect your data. However, no online system is 100% secure, and we cannot guarantee absolute security.</p>
                 </div>
-
-                <!-- Foot Protection -->
-                <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=professional%20steel%20toe%20safety%20boots%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=5&orientation=landscape" alt="Foot Protection" class="w-full h-48 object-cover object-center" loading="lazy">
-                    <div class="p-6">
-                        <h2 class="text-lg font-semibold text-gray-900 mb-2">Foot Protection</h2>
-                        <p class="text-gray-600 text-sm mb-4">Steel toe safety boots and slip-resistant shoes for ultimate foot safety on any site.</p>
-                        <a href="shop.html?category=foot-protection" class="inline-block bg-primary text-white text-sm font-medium py-2 px-4 rounded-button hover:bg-primary/90" aria-label="Shop Foot Protection">Shop Now</a>
-                    </div>
+                <div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">5. Your Rights</h3>
+                    <p>Under Kenyan data protection laws, you have the right to:</p>
+                    <ul class="list-disc pl-5 mt-2">
+                        <li>Access, correct, or delete your personal information.</li>
+                        <li>Opt out of marketing communications.</li>
+                        <li>Request information about how your data is used.</li>
+                    </ul>
+                    <p class="mt-2">Contact us at <a href="mailto:info@safetygear.co.ke" class="text-primary hover:underline">info@safetygear.co.ke</a> to exercise these rights.</p>
                 </div>
-
-                <!-- Fall Protection -->
-                <div class="category-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20harness%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=400&height=300&seq=6&orientation=landscape" alt="Fall Protection" class="w-full h-48 object-cover object-center" loading="lazy">
-                    <div class="p-6">
-                        <h2 class="text-lg font-semibold text-gray-900 mb-2">Fall Protection</h2>
-                        <p class="text-gray-600 text-sm mb-4">Safety harnesses and lanyards designed for secure work at heights.</p>
-                        <a href="shop.html?category=fall-protection" class="inline-block bg-primary text-white text-sm font-medium py-2 px-4 rounded-button hover:bg-primary/90" aria-label="Shop Fall Protection">Shop Now</a>
-                    </div>
+                <div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">6. Cookies</h3>
+                    <p>We use cookies to enhance your browsing experience. You can manage cookie preferences via your browser settings.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">7. Changes to This Policy</h3>
+                    <p>We may update this policy periodically. Changes will be posted on this page with the effective date.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">8. Contact Us</h3>
+                    <p>If you have questions about this policy, contact us at:</p>
+                    <ul class="list-none pl-5 mt-2">
+                        <li>Email: <a href="mailto:info@safetygear.co.ke" class="text-primary hover:underline">info@safetygear.co.ke</a></li>
+                        <li>Phone: <a href="tel:+254715135141" class="text-primary hover:underline">+254 715 135 141</a></li>
+                        <li>Address: 123 Safety Road, Industrial District, Nairobi, Kenya</li>
+                    </ul>
                 </div>
             </div>
-        </section>
-
-        <!-- Call to Action -->
-        <section class="bg-primary text-white rounded-lg p-8 text-center">
-            <h2 class="text-2xl font-semibold mb-4">Need Bulk Orders?</h2>
-            <p class="text-lg mb-6 max-w-2xl mx-auto">Equip your team with our certified PPE. Request a customized quote for bulk orders today.</p>
-            <a href="bulk-orders.html" class="inline-block bg-white text-primary font-medium py-3 px-6 rounded-button hover:bg-gray-100" aria-label="Request Bulk Order Quote">Request a Quote</a>
+            <p class="text-gray-500 text-sm mt-6">Effective Date: June 12, 2025</p>
         </section>
     </main>
 
@@ -373,9 +406,9 @@
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors">My Account</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Order Tracking</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Shipping Information</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Returns & Exchanges</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                        <li><a href="shipping-policy.html" class="text-gray-400 hover:text-white transition-colors">Shipping Information</a></li>
+                        <li><a href="refund-policy.html" class="text-gray-400 hover:text-white transition-colors">Returns & Exchanges</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
                     </ul>
                 </div>
                 <div>
@@ -404,10 +437,10 @@
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 SafetyGear. All rights reserved.</p>
                     <div class="flex flex-wrap justify-center gap-4">
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">Shipping Policy</a>
-                        <a href="#" class="text-gray-400 hover:text-white text-sm">Refund Policy</a>
+                        <a href="privacy-policy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                        <a href="terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                        <a href="shipping-policy.html" class="text-gray-400 hover:text-white text-sm">Shipping Policy</a>
+                        <a href="refund-policy.html" class="text-gray-400 hover:text-white text-sm">Refund Policy</a>
                     </div>
                 </div>
                 <div class="flex justify-center mt-6 space-x-4">

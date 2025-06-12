@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - SafetyGear</title>
+    <meta name="description" content="Find answers to frequently asked questions about SafetyGear’s personal protective equipment, shipping, and returns in Kenya.">
+    <meta name="keywords" content="SafetyGear FAQs, PPE Kenya, safety equipment questions, Nairobi safety gear">
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0066cc',
+                        secondary: '#ff9900'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Adjust based on content */
+        }
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Top Bar -->
+    <div class="bg-gray-50 py-2 border-b border-gray-100">
+        <div class="container mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 mb-2 md:mb-0">
+                <div class="flex items-center text-sm text-gray-600">
+                    <i class="ri-phone-line mr-2"></i>
+                    <span>+254 715 135 141</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600">
+                    <i class="ri-mail-line mr-2"></i>
+                    <span>info@safetygear.co.ke</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition" aria-label="Facebook">
+                    <i class="ri-facebook-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition" aria-label="Twitter">
+                    <i class="ri-twitter-x-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition" aria-label="LinkedIn">
+                    <i class="ri-linkedin-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 hover:bg-primary hover:text-white transition" aria-label="Instagram">
+                    <i class="ri-instagram-line"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="index.html" aria-label="Safety Gear Home">
+                    <img src="/assets/logo.png" alt="Safety Gear Logo" class="h-12 w-auto">
+                </a>
+                <nav class="hidden md:flex ml-6 space-x-6" aria-label="Main navigation">
+                    <a href="index.html" class="text-gray-600 hover:text-primary font-medium">Home</a>
+                    <a href="shop.html" class="text-gray-600 hover:text-primary font-medium">Shop</a>
+                    <a href="categories.html" class="text-gray-600 hover:text-primary font-medium">Categories</a>
+                    <a href="bulk-orders.html" class="text-gray-600 hover:text-primary font-medium">Bulk Orders</a>
+                    <a href="about.html" class="text-gray-600 hover:text-primary font-medium">About</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-primary font-medium">Contact</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center relative">
+                    <input type="search" placeholder="Search products..." class="border border-gray-300 rounded-button pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary w-64" aria-label="Search products">
+                    <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                        <i class="ri-search-line"></i>
+                    </div>
+                </div>
+                <button id="mobile-search-toggle" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-full" aria-label="Search">
+                    <i class="ri-search-line ri-lg"></i>
+                </button>
+                <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-full" aria-label="User Account">
+                    <i class="ri-user-line ri-lg"></i>
+                </a>
+                <button id="cart-toggle" class="w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-full relative" aria-label="Shopping Cart">
+                    <i class="ri-shopping-cart-line ri-lg"></i>
+                    <span class="absolute -top-1 -right-1 bg-primary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                </button>
+                <button id="mobile-menu-toggle" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-100 rounded-full" aria-label="Menu">
+                    <i class="ri-menu-line ri-lg"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-search" class="mt-4 hidden md:hidden px-4">
+            <div class="relative">
+                <input type="search" placeholder="Search products..." class="border border-gray-300 rounded-button py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary w-full" aria-label="Search products">
+                <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                    <i class="ri-search-line"></i>
+                </div>
+            </div>
+        </div>
+        <nav id="mobile-menu" class="mt-4 hidden md:hidden flex flex-col space-y-2 px-4 pb-2">
+            <a href="index.html" class="text-gray-600 hover:text-primary font-medium py-2">Home</a>
+            <a href="shop.html" class="text-gray-600 hover:text-primary font-medium py-2">Shop</a>
+            <a href="categories.html" class="text-gray-600 hover:text-primary font-medium py-2">Categories</a>
+            <a href="bulk-orders.html" class="text-gray-600 hover:text-primary font-medium py-2">Bulk Orders</a>
+            <a href="about.html" class="text-gray-600 hover:text-primary font-medium py-2">About</a>
+            <a href="contact.html" class="text-gray-600 hover:text-primary font-medium py-2">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b">
+        <div class="container mx-auto px-4 py-3">
+            <nav class="flex items-center text-sm text-gray-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-primary">Home</a>
+                <span class="mx-2">/</span>
+                <span class="font-medium text-gray-900">FAQs</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Find answers to common questions about our products, shipping, returns, and more. Can’t find what you’re looking for? Contact us!</p>
+            <a href="contact.html" class="mt-6 inline-block bg-primary text-white font-medium py-2 px-4 rounded-button hover:bg-primary/90" aria-label="Contact Us">Contact Us</a>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="bg-white rounded-lg shadow-sm p-8 mb-12">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Common Questions</h2>
+            <div class="space-y-4">
+                <div class="faq-item border-b border-gray-200 pb-4">
+                    <button class="flex justify-between items-center w-full text-left" aria-expanded="false" aria-controls="faq-1">
+                        <h3 class="text-lg font-medium text-gray-900">What types of safety equipment do you offer?</h3>
+                        <i class="ri-arrow-down-s-line faq-toggle text-gray-500"></i>
+                    </button>
+                    <div id="faq-1" class="faq-answer text-gray-600 text-sm mt-2">
+                        <p>We offer a wide range of personal protective equipment, including safety helmets, goggles, respirators, gloves, steel toe boots, and fall protection gear, all certified to ANSI, CE, or NIOSH standards.</p>
+                    </div>
+                </div>
+                <div class="faq-item border-b border-gray-200 pb-4">
+                    <button class="flex justify-between items-center w-full text-left" aria-expanded="false" aria-controls="faq-2">
+                        <h3 class="text-lg font-medium text-gray-900">How long does shipping take in Kenya?</h3>
+                        <i class="ri-arrow-down-s-line faq-toggle text-gray-500"></i>
+                    </button>
+                    <div id="faq-2" class="faq-answer text-gray-600 text-sm mt-2">
+                        <p>Shipping within Nairobi typically takes 1-2 business days, while other parts of Kenya take 3-5 business days. Bulk orders may have custom delivery schedules.</p>
+                    </div>
+                </div>
+                <div class="faq-item border-b border-gray-200 pb-4">
+                    <button class="flex justify-between items-center w-full text-left" aria-expanded="false" aria-controls="faq-3">
+                        <h3 class="text-lg font-medium text-gray-900">What is your return policy?</h3>
+                        <i class="ri-arrow-down-s-line faq-toggle text-gray-500"></i>
+                    </button>
+                    <div id="faq-3" class="faq-answer text-gray-600 text-sm mt-2">
+                        <p>We offer a 30-day return policy for unused items in original packaging. Contact us to initiate a return, and we’ll guide you through the process.</p>
+                    </div>
+                </div>
+                <div class="faq-item border-b border-gray-200 pb-4">
+                    <button class="flex justify-between items-center w-full text-left" aria-expanded="false" aria-controls="faq-4">
+                        <h3 class="text-lg font-medium text-gray-900">Do you offer bulk discounts?</h3>
+                        <i class="ri-arrow-down-s-line faq-toggle text-gray-500"></i>
+                    </button>
+                    <div id="faq-4" class="faq-answer text-gray-600 text-sm mt-2">
+                        <p>Yes, we provide exclusive discounts on bulk orders. Visit our Bulk Orders page to request a customized quote tailored to your needs.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="flex justify-between items-center w-full text-left" aria-expanded="false" aria-controls="faq-5">
+                        <h3 class="text-lg font-medium text-gray-900">Are your products certified?</h3>
+                        <i class="ri-arrow-down-s-line faq-toggle text-gray-500"></i>
+                    </button>
+                    <div id="faq-5" class="faq-answer text-gray-600 text-sm mt-2">
+                        <p>All our products meet international safety standards, including ANSI Z89.1, CE EN397, and NIOSH certifications, ensuring top-quality protection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-96 w-full bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex flex-col h-full">
+            <div class="p-4 border-b">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-semibold text-gray-900">Shopping Cart (3)</h2>
+                    <button id="close-cart" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700" aria-label="Close Cart">
+                        <i class="ri-close-line ri-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flex-1 overflow-y-auto p-4 space-y-4">
+                <div class="flex items-start space-x-4">
+                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20helmet%20hard%20hat%20with%20white%20color%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=80&height=80&seq=1" alt="Safety Helmet Pro" class="w-20 h-20 object-cover rounded-lg" loading="lazy">
+                    <div class="flex-1">
+                        <h3 class="text-sm font-medium text-gray-900">Safety Helmet Pro X500</h3>
+                        <p class="text-sm text-gray-500">White</p>
+                        <div class="flex items-center mt-2">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 rounded hover:bg-gray-200" aria-label="Decrease Quantity">-</button>
+                            <input type="number" value="1" min="1" class="w-10 h-6 text-center text-sm mx-2 border-none" aria-label="Quantity">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 rounded hover:bg-gray-200" aria-label="Increase Quantity">+</button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-medium text-gray-900">$29</p>
+                        <button class="text-sm text-red-500 hover:text-red-600 mt-1" aria-label="Remove Safety Helmet">Remove</button>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20gloves%20with%20reinforced%20palms%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=80&height=80&seq=2" alt="Work Gloves" class="w-20 h-20 object-cover rounded-lg" loading="lazy">
+                    <div class="flex-1">
+                        <h3 class="text-sm font-medium text-gray-900">Heavy Duty Work Gloves</h3>
+                        <p class="text-sm text-gray-500">Large</p>
+                        <div class="flex items-center mt-2">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 rounded hover:bg-gray-200" aria-label="Decrease Quantity">-</button>
+                            <input type="number" value="1" min="1" class="w-10 h-6 text-center text-sm mx-2 border-none" aria-label="Quantity">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 rounded hover:bg-gray-200" aria-label="Increase Quantity">+</button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-medium text-gray-900">$14.95</p>
+                        <button class="text-sm text-red-500 hover:text-red-600 mt-1" aria-label="Remove Work Gloves">Remove</button>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-4">
+                    <img src="https://readdy.ai/api/search-image?query=professional%20safety%20goggles%20with%20anti-fog%20lens%20on%20plain%20background%2C%20product%20photography%2C%20studio%20lighting%2C%20high%20quality&width=80&height=80&seq=3" alt="Safety Goggles" class="w-20 h-20 object-cover rounded-lg" loading="lazy">
+                    <div class="flex-1">
+                        <h3 class="text-sm font-medium text-gray-900">Anti-Fog Safety Goggles</h3>
+                        <p class="text-sm text-gray-500">Universal</p>
+                        <div class="flex items-center mt-2">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 rounded hover:bg-gray-200" aria-label="Decrease Quantity">-</button>
+                            <input type="number" value="1" min="1" class="w-10 h-6 text-center text-sm mx-2 border-none" aria-label="Quantity">
+                            <button class="w-6 h-6 flex items-center justify-center text-gray-600 bg-gray-100 rounded hover:bg-gray-200" aria-label="Increase Quantity">+</button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-medium text-gray-900">$16.50</p>
+                        <button class="text-sm text-red-500 hover:text-red-600 mt-1" aria-label="Remove Safety Goggles">Remove</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t p-4 space-y-4">
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">Subtotal</span>
+                    <span class="font-medium text-gray-900">$60.45</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">Shipping</span>
+                    <span class="font-medium text-gray-900">Calculated at checkout</span>
+                </div>
+                <div class="flex justify-between text-base font-medium">
+                    <span class="text-gray-900">Total</span>
+                    <span class="text-gray-900">$60</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button id="continue-shopping" class="w-full px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 rounded" aria-label="Continue Shopping">Continue Shopping</button>
+                    <button class="w-full px-4 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 rounded" aria-label="Proceed to Checkout">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-1"></div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/254718664234" class="absolute bottom-12 right-12 z-10 transition-transform hover:scale-105" aria-label="Contact via WhatsApp">
+        <div class="w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg">
+            <i class="ri-whatsapp-line text-2xl"></i>
+        </div>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white border-t border-gray-300 mt-10 py-6">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div>
+                    <a href="index.html" class="text-xl font-bold text-white mb-3 block">Safety Gear</a>
+                    <p class="text-gray-400 text-sm mb-3">Providing top-quality personal protective equipment since 2010.</p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-8 h-8 bg-gray-700 rounded flex items-center justify-center hover:bg-blue-600" aria-label="Facebook">
+                            <i class="ri-facebook-line"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-700 rounded flex items-center justify-center hover:bg-blue-600" aria-label="Twitter">
+                            <i class="ri-twitter-x-line"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-700 rounded flex items-center justify-center hover:bg-blue-600" aria-label="Instagram">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 bg-gray-700 rounded flex items-center justify-center hover:bg-blue-600" aria-label="LinkedIn">
+                            <i class="ri-linkedin-line"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-base font-semibold mb-3">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="shop.html" class="text-gray-400 hover:text-white">Shop</a></li>
+                        <li><a href="categories.html" class="text-gray-400 hover:text-white">Categories</a></li>
+                        <li><a href="bulk-orders.html" class="text-gray-400 hover:text-white">Bulk Orders</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-base font-semibold mb-3">Customer Service</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-400 hover:text-white">My Account</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Order Tracking</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Information</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-base font-semibold mb-3">Contact Us</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start">
+                            <i class="ri-map-pin-line text-gray-400 mr-2 mt-1"></i>
+                            <span class="text-gray-400">123 Safety Road, Industrial Area, Nairobi</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-phone-line text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">+254 718 9012 34</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-mail-line text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">info@safetygear.co</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="ri-time-line text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">Mon-Fri: 8AM-6PM, Sat: 9AM-4PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-600">
+                <div class="flex flex-col sm:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-3 sm:mb-0">© 2023 Safety Gear. All rights reserved.</p>
+                    <div class="flex gap-3 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white">Refund Policy</a>
+                    </div>
+                </div>
+                <div class="flex justify-center mt-4 gap-3">
+                    <i class="ri-visa-line ri-lg text-gray-400"></i>
+                    <i class="ri-mastercard-line ri-lg text-gray-400"></i>
+                    <i class="ri-paypal-line ri-lg text-gray-400"></i>
+                    <i class="ri-apple-line ri-lg text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Utility Functions
+            const toggleElement = (element, show) => element.classList.toggle('hidden', !show);
+            const setClasses = (element, classes, add = true) => element.classList[add ? 'add' : 'remove'](...classes.split(' '));
+
+            // Mobile Menu
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuToggle?.addEventListener('click', () => toggleElement(mobileMenu, !mobileMenu.classList.contains('hidden')));
+
+            // Mobile Search
+            const mobileSearchToggle = document.getElementById('mobile-search-toggle');
+            const mobileSearch = document.getElementById('mobile-search');
+            mobileSearchToggle?.addEventListener('click', () => toggleElement(mobileSearch, !mobileSearch.classList.contains('hidden')));
+
+            // Cart Sidebar
+            const cartToggle = document.getElementById('cart-toggle');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const closeCart = document.getElementById('close-cart');
+            const cartOverlay = document.getElementById('cart-modal');
+            const continueShopping = document.getElementById('continue-shopping');
+
+            const openCart = () => {
+                if (!cartSidebar || !cartOverlay) return;
+                setClasses(cartSidebar, 'translate-x-full', false);
+                toggleElement(cartOverlay, true);
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeCart = () => {
+                if (!cartSidebar || !cartOverlay) return;
+                setClasses(cartSidebar, 'translate-x-full');
+                toggleElement(cartOverlay, false);
+                document.body.style.overflow = '';
+            };
+
+            cartToggle?.addEventListener('click', openCart);
+            closeCart?.addEventListener('click', closeCart);
+            continueShopping?.addEventListener('click', closeCart);
+            cartOverlay?.addEventListener('click', closeCart);
+
+            // Cart Quantity Controls
+            const quantityContainers = document.querySelectorAll('#cart-sidebar .flex');
+            quantityContainers.forEach(container => {
+                const decreaseBtn = container.querySelector('button[aria-label="Decrease Quantity"]');
+                const increaseBtn = container.querySelector('button[aria-label="Increase Quantity"]');
+                const input = container.querySelector('input');
+
+                decreaseBtn?.addEventListener('click', () => {
+                    if (!input) return;
+                    const value = parseInt(input.value);
+                    if (value > 1) input.value = value - 1;
+                });
+
+                increaseBtn?.addEventListener('click', () => {
+                    if (!input) return;
+                    input.value = parseInt(input.value) + 1;
+                });
+            });
+
+            // FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const button = item.querySelector('button');
+                const answer = item.querySelector('.faq-answer');
+                button?.addEventListener('click', () => {
+                    const isOpen = item.classList.contains('active');
+                    faqItems.forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.faq-answer').style.maxHeight = '0';
+                        i.querySelector('button').setAttribute('aria-expanded', 'false');
+                    });
+                    if (!isOpen) {
+                        item.classList.add('active');
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        button.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
